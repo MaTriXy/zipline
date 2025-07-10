@@ -71,7 +71,9 @@ class ZiplinePlugin : KotlinCompilerPluginSupportPlugin {
 
     kotlinExtension.targets.withType(KotlinJsIrTarget::class.java).all { kotlinTarget ->
       kotlinTarget.compilerOptions {
+        // Target latest JS to get classes, arrow functions, etc.
         this.target.set("es2015")
+        // But our loader requires we still use the old module format.
         this.moduleKind.set(MODULE_UMD)
       }
       kotlinTarget.binaries.withType(JsIrBinary::class.java).all { kotlinBinary ->
