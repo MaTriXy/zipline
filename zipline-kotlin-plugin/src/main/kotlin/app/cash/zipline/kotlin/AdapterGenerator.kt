@@ -37,6 +37,7 @@ import org.jetbrains.kotlin.ir.builders.irInt
 import org.jetbrains.kotlin.ir.builders.irReturn
 import org.jetbrains.kotlin.ir.builders.irString
 import org.jetbrains.kotlin.ir.builders.irTemporary
+import org.jetbrains.kotlin.ir.builders.irUnit
 import org.jetbrains.kotlin.ir.builders.irVararg
 import org.jetbrains.kotlin.ir.declarations.IrClass
 import org.jetbrains.kotlin.ir.declarations.IrConstructor
@@ -53,6 +54,7 @@ import org.jetbrains.kotlin.ir.types.IrType
 import org.jetbrains.kotlin.ir.types.IrTypeSystemContextImpl
 import org.jetbrains.kotlin.ir.types.classFqName
 import org.jetbrains.kotlin.ir.types.defaultType
+import org.jetbrains.kotlin.ir.types.isUnit
 import org.jetbrains.kotlin.ir.types.makeNullable
 import org.jetbrains.kotlin.ir.types.starProjectedType
 import org.jetbrains.kotlin.ir.types.typeWith
@@ -587,13 +589,22 @@ internal class AdapterGenerator(
       context = pluginContext,
       scopeOwnerSymbol = callFunction.symbol,
     ) {
+      val functionCall = irCallServiceFunction(
+        bridgedInterface = bridgedInterface,
+        ziplineFunctionClass = functionClass,
+        callFunction = callFunction,
+        bridgedFunction = bridgedFunction,
+      )
+      // Work around https://github.com/cashapp/zipline/issues/1618: explicitly return Unit because
+      // functions that return 'Unit' might not.
       +irReturn(
-        irCallServiceFunction(
-          bridgedInterface = bridgedInterface,
-          ziplineFunctionClass = functionClass,
-          callFunction = callFunction,
-          bridgedFunction = bridgedFunction,
-        ),
+        when {
+          !functionCall.type.isUnit() -> functionCall
+          else -> {
+            +functionCall
+            irUnit()
+          }
+        }
       )
     }
 
