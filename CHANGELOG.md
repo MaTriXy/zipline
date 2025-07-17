@@ -5,6 +5,17 @@
 * In-development snapshots are now published to the Central Portal Snapshots repository at https://central.sonatype.com/repository/maven-snapshots/.
 
 
+## [1.21.1] - 2025-07-17
+[1.21.1]: https://github.com/cashapp/zipline/releases/tag/1.21.1
+
+ * Fix: Recover from more SQL exceptions. We had a bug on Kotlin/Native where a full disk on the
+   host device would cause the disk cache to crash. With this update it gracefully degrades to not
+   caching.
+ * Fix: Work-around Kotlin/JS treating null as Unit. When we updated our intermediate JavaScript to
+   es2015, that caused `suspend` functions that return `Unit` to crash. We now explicitly handle
+   cases where functions that should return `Unit` don’t!
+
+
 ## [1.21.0] - 2025-07-15
 [1.21.0]: https://github.com/cashapp/zipline/releases/tag/1.21.0
 
