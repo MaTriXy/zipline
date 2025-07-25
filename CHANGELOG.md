@@ -4,7 +4,12 @@
 
 * In-development snapshots are now published to the Central Portal Snapshots repository at https://central.sonatype.com/repository/maven-snapshots/.
 
+
+## [1.22.0] - 2025-07-25
+[1.22.0]: https://github.com/cashapp/zipline/releases/tag/1.22.0
+
  * Upgrade: [Kotlin 2.2.0][kotlin_2_2_0].
+ * Upgrade: [OkHttp 5.1.0][okhttp_5_1_0].
 
 
 ## [1.21.1] - 2025-07-17
@@ -636,6 +641,7 @@ Initial release.
 [okio_3_7_0]: https://square.github.io/okio/changelog/#version-370
 [okio_3_9_0]: https://square.github.io/okio/changelog/#version-390
 [okio_3_9_1]: https://square.github.io/okio/changelog/#version-391
+[okhttp_5_1_0]: https://square.github.io/okhttp/changelogs/changelog/#version-510
 [oracle_linux_8]: https://docs.oracle.com/en/operating-systems/oracle-linux/8/
 [sqldelight_2_0_0]: https://cashapp.github.io/sqldelight/2.0.0/changelog/#200-2023-07-26
 [sqldelight_2_0_2]: https://cashapp.github.io/sqldelight/2.0.2/changelog/#202-2024-04-05
