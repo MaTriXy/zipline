@@ -5,6 +5,15 @@
 * In-development snapshots are now published to the Central Portal Snapshots repository at https://central.sonatype.com/repository/maven-snapshots/.
 
 
+## [1.23.0] - 2025-09-09
+[1.23.0]: https://github.com/cashapp/zipline/releases/tag/1.23.0
+
+ * Fix: Recover from more full disk exceptions. We had a bug on Kotlin/Native where Zipline would
+   crash if it was unable to create the cache directory.
+ * Upgrade: [Kotlin 2.2.10][kotlin_2_2_10].
+ * Upgrade: [Okio 3.16.0][okio_3_16_0].
+
+
 ## [1.22.0] - 2025-07-25
 [1.22.0]: https://github.com/cashapp/zipline/releases/tag/1.22.0
 
@@ -625,6 +634,7 @@ Initial release.
 [kotlin_2_0_0]: https://github.com/JetBrains/kotlin/releases/tag/v2.0.0
 [kotlin_2_1_21]: https://github.com/JetBrains/kotlin/releases/tag/v2.1.21
 [kotlin_2_2_0]: https://github.com/JetBrains/kotlin/releases/tag/v2.2.0
+[kotlin_2_2_10]: https://github.com/JetBrains/kotlin/releases/tag/v2.2.10
 [kotlin_serialization_1_4_0]: https://github.com/Kotlin/kotlinx.serialization/releases/tag/v1.4.0
 [kotlin_serialization_1_5_0]: https://github.com/Kotlin/kotlinx.serialization/releases/tag/v1.5.0
 [kotlin_serialization_1_5_1]: https://github.com/Kotlin/kotlinx.serialization/releases/tag/v1.5.1
@@ -638,6 +648,7 @@ Initial release.
 [kotlinx_coroutines_1_8_0]: https://github.com/Kotlin/kotlinx.coroutines/releases/tag/1.8.0
 [kotlinx_coroutines_1_9_0]: https://github.com/Kotlin/kotlinx.coroutines/releases/tag/1.9.0
 [okio_3_15_0]: https://square.github.io/okio/changelog/#version-3150
+[okio_3_16_0]: https://square.github.io/okio/changelog/#version-3160
 [okio_3_7_0]: https://square.github.io/okio/changelog/#version-370
 [okio_3_9_0]: https://square.github.io/okio/changelog/#version-390
 [okio_3_9_1]: https://square.github.io/okio/changelog/#version-391
