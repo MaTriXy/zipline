@@ -9,6 +9,8 @@ pub fn build(b: *std.Build) !void {
   try setupTarget(b, &deleteLib.step, .linux, .x86_64, "amd64");
   try setupTarget(b, &deleteLib.step, .macos, .aarch64, "aarch64");
   try setupTarget(b, &deleteLib.step, .macos, .x86_64, "x86_64");
+  try setupTarget(b, &deleteLib.step, .windows, .aarch64, "aarch64");
+  try setupTarget(b, &deleteLib.step, .windows, .x86_64, "amd64");
 }
 
 fn setupTarget(b: *std.Build, step: *std.Build.Step, tag: std.Target.Os.Tag, arch: std.Target.Cpu.Arch, dir: []const u8) !void {
@@ -24,9 +26,9 @@ fn setupTarget(b: *std.Build, step: *std.Build.Step, tag: std.Target.Os.Tag, arc
     .optimize = .ReleaseSmall,
   });
 
-  var version_buf: [11]u8 = undefined;
+  var version_buf: [64]u8 = undefined;
   const version = try readVersionFile(&version_buf);
-  var quoted_version_buf: [12]u8 = undefined;
+  var quoted_version_buf: [64]u8 = undefined;
   const quoted_version = try std.fmt.bufPrint(&quoted_version_buf, "\"{s}\"", .{ version });
   lib.root_module.addCMacro("CONFIG_VERSION", quoted_version);
 
@@ -81,15 +83,11 @@ fn setupTarget(b: *std.Build, step: *std.Build.Step, tag: std.Target.Os.Tag, arc
   step.dependOn(&install.step);
 }
 
-fn readVersionFile(version_buf: []u8) ![]u8 {
-  const version_file = try std.fs.cwd().openFile(
+fn readVersionFile(version_buf: []u8) ![]const u8 {
+  const version = try std.fs.cwd().readFile(
     "native/quickjs/VERSION",
-    .{ },
+    version_buf,
   );
-  defer version_file.close();
 
-  var version_file_reader = std.io.bufferedReader(version_file.reader());
-  var version_file_stream = version_file_reader.reader();
-  const version = try version_file_stream.readUntilDelimiterOrEof(version_buf, '\n');
-  return version.?;
+  return std.mem.trim(u8, version, "\r\n");
 }
