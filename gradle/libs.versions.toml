@@ -4,7 +4,6 @@ compileSdk = "36"
 jetty = "12.1.3"
 kotlin = "2.2.21"
 kotlinx-coroutines = "1.10.2"
-ksp = "2.2.20-2.0.4"
 kotlinx-serialization = "1.9.0"
 okHttp = "5.2.1"
 okio = "3.16.2"
@@ -26,12 +25,9 @@ androidx-core-ktx = { module = "androidx.core:core-ktx", version = "1.17.0" }
 androidx-lifecycle = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version = "2.9.4" }
 androidx-test-runner = { module = "androidx.test:runner", version = "1.7.0" }
 assertk = "com.willowtreeapps.assertk:assertk:0.28.1"
-auto-service-compiler = { module = "dev.zacsweers.autoservice:auto-service-ksp", version = "1.2.0" }
-auto-service-annotations = { module = "com.google.auto.service:auto-service-annotations", version = "1.1.1" }
 binary-compatibility-validator-gradle-plugin = { module = "org.jetbrains.kotlinx.binary-compatibility-validator:org.jetbrains.kotlinx.binary-compatibility-validator.gradle.plugin", version = "0.18.1" }
 cklib-gradle-plugin = { module = "co.touchlab:cklib-gradle-plugin", version = "0.3.4" }
 dokka-gradle-plugin = { module = "org.jetbrains.dokka:dokka-gradle-plugin", version = "2.0.0" }
-google-ksp = { module = "com.google.devtools.ksp:symbol-processing-gradle-plugin", version.ref = "ksp" }
 jetty-ee10Servlet = { module = "org.eclipse.jetty.ee10:jetty-ee10-servlet", version.ref = "jetty" }
 jetty-ee10WebsocketJettyServer = { module = "org.eclipse.jetty.ee10.websocket:jetty-ee10-websocket-jetty-server", version.ref = "jetty" }
 jetty-server = { module = "org.eclipse.jetty:jetty-server", version.ref = "jetty" }
